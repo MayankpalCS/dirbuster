@@ -1,33 +1,41 @@
+import time
+
 import requests
 import queue
 import threading
 import sys
-
-host = sys.argv[1]
-threads = int(sys.argv[2])
-ext = sys.argv[3]
+import argparse
+argparse=argparse.ArgumentParser(description="Use this tool to bust directories",usage="python3"+sys.argv[0]+"-u [url] -t [no_of+threads] -d directorybust.txt ")
+argparse.add_argument("-u","--url",help="Enter the url name on which you want to perform directory busting",required=True)
+argparse.add_argument("-t","--threads",help="no of threads",required=True)
+argparse.add_argument("-d","--direc",help="Enter the name of wordlist one is provided,Fell free to name that",required=True)
+argparse.add_argument("-e","--ext",help="Enter the extension[.php, .html etc]")
+args=argparse.parse_args()#parsed the values
+host=args.url#above we enteres --domain will be fetched hhere
+threads=int(args.threads)
+wordlist=args.direc
+extension=args.ext
 try:
     requests.get(host)
 except Exception as e:
     print('Host resolution error')
     exit()
-wordlist=open('directorybust.txt', 'r')
+wordlist=open(wordlist, 'r')
 q = queue.Queue()
 
 
 def busting(thread, q):
-    while True:
+    while not q.empty():
         url = q.get()
-
         response = requests.get(url,allow_redirects=False)
-        if response.status_code == 200:
+        if response.status_code != 404:
             print(f"[+]{url} directory exists")
         q.task_done()
 for words in wordlist.read().splitlines():
-    if not ext:
+    if not extension:
         url = host + '/' + words
     else:
-        url = host + '/' + words + ext
+        url = host + '/' + words + extension
     q.put(url)
 for i in range(threads):
     t = threading.Thread(target=busting,args=(i,q))
