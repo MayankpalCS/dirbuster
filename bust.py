@@ -3,6 +3,13 @@ import queue
 import threading
 import sys
 import argparse
+from colorama import init, Fore
+
+init()
+red=Fore.RED
+green=Fore.GREEN
+yellow=Fore.YELLOW
+reset=Fore.RESET
 argparse=argparse.ArgumentParser(description="Use this tool to bust directories",usage="python3"+sys.argv[0]+"-u [url] -t [no_of+threads] -d directorybust.txt ")
 argparse.add_argument("-u","--url",help="Enter the url name on which you want to perform directory busting",required=True)
 argparse.add_argument("-t","--threads",help="no of threads",required=True)
@@ -14,7 +21,7 @@ wordlist=args.direc
 try:
     requests.get(host)
 except Exception as e:
-    print('Host resolution error')
+    print(f'{red}Host resolution error')
     exit()
 
 wordlist=open(wordlist, 'r')
@@ -27,7 +34,7 @@ def busting(thread, q):
 
         response = requests.get(url,allow_redirects=False)
         if response.status_code != 404:
-            print(f"[+]{url} directory exists")
+            print(f"{green}[+]{url} directory exists")
         q.task_done()
 for words in wordlist.read().splitlines():
 
