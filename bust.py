@@ -4,7 +4,16 @@ import threading
 import sys
 import argparse
 from colorama import init, Fore
-
+def banner():
+    print("""
+           |------|  ------- |-----|     |-----| |     | |--------| -------- |----- |----|
+           |      |     |    |     |     |     | |     | |             |     |      |    |
+           |      |     |    |-----|     |-----| |     | |-------|     |     |----- |----|
+           |      |     |    ||          |     | |     |         |     |     |      ||
+           |------|  ------- |  |        |-----| |-----| |-------|     |     |----- | |
+            @ developed by mayank |                                                     |
+                           """)
+banner()
 init()
 red=Fore.RED
 green=Fore.GREEN
