@@ -52,7 +52,7 @@ def sub_find(thread, q):
             if res.status_code != 404:
                 print(f"{green}[+]{url} is there")
         except Exception as e:
-            print(f"{red}Ctrl+C to exit search is complete")
+            print(f"{red}-----------------press ctrl+c if no response-----------------")
         q.task_done()
 
 
