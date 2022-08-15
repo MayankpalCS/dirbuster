@@ -48,7 +48,7 @@ def sub_find(thread, q):
     while True:
         url = q.get()
         try:
-            res = requests.get(url, allow_redirects=False,timeout=1)
+            res = requests.get(url, allow_redirects=False,timeout=2)
             if res.status_code != 404:
                 print(f"{green}[+]{url} is there")
         except Exception as e:
