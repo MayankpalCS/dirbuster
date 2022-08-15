@@ -52,7 +52,7 @@ def fuckyeah(thread, q):
             if res.status_code != 404:
                 print(f"{green}[+]{url} is there")
         except Exception as e:
-            print("Ctrl+C to exit search is complete")
+            print(f"{red}Ctrl+C to exit search is complete")
         q.task_done()
 
 
