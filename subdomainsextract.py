@@ -27,17 +27,17 @@ banner()
 
 argparse = argparse.ArgumentParser(description="Use this tool to bust directories",
                                    usage="python3" + sys.argv[0] + "-u [url] -t [no_of+threads] -d directorybust.txt ")
-argparse.add_argument("-h", "--host", help="Enter the domain name on which you want to perform directory busting",
+argparse.add_argument("-u", "--url", help="Enter the url name on which you want to perform directory busting",
                       required=True)
 argparse.add_argument("-t", "--threads", help="no of threads", required=True)
 argparse.add_argument("-d", "--direc", help="Enter the name of wordlist one is provided,Fell free to name that",
                       required=True)
 args = argparse.parse_args()  # parsed the values
-host = args.host  # above we enteres --domain will be fetched hhere
+host = args.url  # above we enteres --domain will be fetched hhere
 threads = int(args.threads)
 wordlist = args.direc
 q = queue.Queue()
-print(f"{green}[+]Seaching for subdomains")
+
 wordlist = open(wordlist, 'r')
 for words in wordlist.read().splitlines():
     url = 'https://' + words + '.' + host
