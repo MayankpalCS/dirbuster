@@ -1,4 +1,7 @@
 # dirbuster
+python3 [file] --help 
+-to look usage of file
+
 Directory buster which runs over the concept of multithreading. It takes just 10 seconds to exhaust a big wordlist.Won't even take a minute to list all urls
 
 here is a demo of extensionbust.py 
