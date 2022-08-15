@@ -8,4 +8,4 @@ here is a demo of extensionbust.py
 
 here is a demo of bust.py
 
-![image](https://user-images.githubusercontent.com/110147408/184570313-96dc5c1f-f7a3-4373-9420-4f93db6dd5ab.png)
+![image](https://user-images.githubusercontent.com/110147408/184570454-c057b034-9223-4d7c-9e7d-65c2959a36c3.png)
