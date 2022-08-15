@@ -26,7 +26,7 @@ def banner():
 banner()
 
 argparse = argparse.ArgumentParser(description="Use this tool to bust directories",
-                                   usage="python3" + sys.argv[0] + "-u [url] -t [no_of+threads] -d directorybust.txt ")
+                                   usage="python3" + sys.argv[0] + "-u [domain] -t [no_of+threads] -d subdomainwordlist.txt ")
 argparse.add_argument("-u", "--url", help="Enter the url name on which you want to perform directory busting",
                       required=True)
 argparse.add_argument("-t", "--threads", help="no of threads", required=True)
