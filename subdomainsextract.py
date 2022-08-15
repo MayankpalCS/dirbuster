@@ -44,7 +44,7 @@ for words in wordlist.read().splitlines():
     q.put(url)
 
 
-def fuckyeah(thread, q):
+def sub_find(thread, q):
     while True:
         url = q.get()
         try:
@@ -59,6 +59,6 @@ def fuckyeah(thread, q):
 for i in range(threads):
 
     time.sleep(1)
-    t = threading.Thread(target=fuckyeah, args=(i, q))
+    t = threading.Thread(target=sub_find, args=(i, q))
     t.daemon = True
     t.start()
