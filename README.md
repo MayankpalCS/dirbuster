@@ -10,3 +10,7 @@ here is a demo of bust.py
 
 ![image](https://user-images.githubusercontent.com/110147408/184570505-9750c62e-26c5-48bd-be5c-a46d11b22820.png)
 
+
+demo of subdomainsextract.py
+
+![image](https://user-images.githubusercontent.com/110147408/184613152-0ccc3a33-0692-43b9-84dc-c2fb1aa543ca.png)
