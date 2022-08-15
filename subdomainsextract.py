@@ -6,7 +6,7 @@ import threading
 import sys
 import argparse
 from colorama import init, Fore
-
+print("If no response then probably the search is over press ctrl+c to exit")
 init()
 red = Fore.RED
 green = Fore.GREEN
@@ -52,7 +52,7 @@ def sub_find(thread, q):
             if res.status_code != 404:
                 print(f"{green}[+]{url} is there")
         except Exception as e:
-            print(f"{red}-----------------press ctrl+c if no response-----------------")
+            pass
         q.task_done()
 
 
