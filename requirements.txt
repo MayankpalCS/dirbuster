@@ -1,3 +1,4 @@
 colorama
 argaparse
 requests
+queuelib
