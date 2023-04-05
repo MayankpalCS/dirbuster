@@ -1,9 +1,13 @@
 import requests
 import queue
 import threading
-import sys
-import argparse
-from colorama import init, Fore
+
+f=open("123456.txt","r")
+threads=int(input("Enter number of threads"))
+wordlist=input("Enter the name of wordlist file.")
+dom=input("Enter url")
+a="pdisaf"
+q=queue.Queue()
 def banner():
     print("""
            |------|  ------- |-----|     |-----| |     | |--------| -------- |----- |----|
@@ -14,46 +18,25 @@ def banner():
             @ developed by mayank |                                                     |
                            """)
 banner()
-init()
-red=Fore.RED
-green=Fore.GREEN
-yellow=Fore.YELLOW
-reset=Fore.RESET
-argparse=argparse.ArgumentParser(description="Use this tool to bust directories",usage="python3"+sys.argv[0]+"-u [url] -t [no_of+threads] -d directorybust.txt ")
-argparse.add_argument("-u","--url",help="Enter the url name on which you want to perform directory busting",required=True)
-argparse.add_argument("-t","--threads",help="no of threads",required=True)
-argparse.add_argument("-d","--direc",help="Enter the name of wordlist one is provided,Fell free to name that",required=True)
-args=argparse.parse_args()#parsed the values
-host=args.url#above we enteres --domain will be fetched hhere
-threads=int(args.threads)
-wordlist=args.direc
 try:
-    requests.get(host)
+    requests.get(f"https://{dom}")
 except Exception as e:
-    print(f'{red}Host resolution error')
+    print(f'Host resolution error')
     exit()
 
-wordlist=open(wordlist, 'r')
-q = queue.Queue()
-
-
-def busting(thread, q):
-    while True:
-        url = q.get()
-
-        response = requests.get(url,allow_redirects=False)
-        if response.status_code != 404:
-            print(f"{green}[+]{url} directory exists")
-        q.task_done()
-for words in wordlist.read().splitlines():
-
-    url = host + '/' + words
+for line in f:
+    word=line.split()
+    url=f"https://{str(dom)}/{str(word[0])}"
     q.put(url)
+
+
+def target():
+    while not q.empty():
+        url=q.get()
+        response=requests.get(url)
+        if response.status_code !=404:
+            print({url})
+
 for i in range(threads):
-    t = threading.Thread(target=busting,args=(i,q))
-    t.daemon = True
+    t=threading.Thread(target=target)
     t.start()
-
-
-
-
